@@ -18,6 +18,10 @@
  * 
  * Depends:
  *   jquery.js
+ *
+ *
+ * Added onChange invocation in init method by ikenfin
+ *
  */
 (function ($) {
   var cache = {}, tmpl,
@@ -856,6 +860,11 @@
               cal.appendTo(document.body);
               $(this).bind(options.showOn, show);
             }
+
+            if(options.onChange) {
+              options.onChange.apply(cal, prepareDate(options), this);
+            }
+            
           }
         });
       },
